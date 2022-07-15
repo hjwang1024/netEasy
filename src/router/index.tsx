@@ -8,33 +8,31 @@ const HomePage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../compon
 const FindPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../pages/Find'));
 
 const MyPage = lazy(() => import(/* webpackChunkName: "LoginPage" */ '../pages/My'));
+const LayoutPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../layout/Layout'));
 
 const routes: RouteConfig[] = [
-  {
-    path: '/',
-    exact: true,
-    render: () => <Redirect to='/home/find' />,
-  },
-  {
-    path: '/login',
-    key: 'login',
-    component: LoginPage,
-  },
-  {
-    component: HomePage,
-    routes: [
-      {
-        path: '/home/find',
-        key: 'find',
+    {
+        path: '/',
         exact: true,
-        component: FindPage,
-      },
-      {
-        path: '/home/my',
-        key: 'my',
-        component: MyPage,
-      },
-    ],
-  },
+        render: () => <Redirect to='/discover' />,
+    },
+    {
+        path: '/discover',
+        component: LayoutPage,
+        routes: [
+            {
+                path: '/discover',
+                key: 'discover',
+                exact: true,
+                component: FindPage,
+            },
+            {
+                path: '/discover/recommendation',
+                key: 'discover',
+                exact: true,
+                component: LoginPage,
+            },
+        ],
+    },
 ];
 export default routes;

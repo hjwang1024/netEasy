@@ -1,120 +1,45 @@
-const OFF = 0;
-const WARN = 1;
-const ERROR = 2;
-
+/**
+ * eslint: eslint的核心代码。
+ * @typescript-eslint/parser: eslint的解析器，用于解析typescript，从而检查和规范Typescript代码。
+ * @typescript-eslint/eslint-plugin: 这是一个eslint插件，包含了各类定义好的检测Typescript代码的规范。
+ */
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  extends: [
-    'airbnb',
-    'airbnb/hooks',
-    'plugin:react/recommended', // 根据 eslint-config-airbnb 官方说明,开启 React Hooks 的检查
-    'plugin:unicorn/recommended',
-    'plugin:promise/recommended',
-    'plugin:@typescript-eslint/recommended', // //开启针对 ts 语法推荐的规则定义
-    'plugin:prettier/recommended',
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      impliedStrict: true,
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
-  },
-  plugins: ['react', 'unicorn', 'promise', '@typescript-eslint', 'prettier'],
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.tsx', '.ts', '.js', '.json'],
-      },
-      typescript: {},
-    },
-  },
-  rules: {
-    'import/extensions': [
-      ERROR,
-      'ignorePackages',
-      {
-        ts: 'never',
-        tsx: 'never',
-        js: 'never',
-      },
+    parser: '@typescript-eslint/parser', // 定义eslint的解析器，在ts项目中必须指定解析器为@typescript-eslint/parser，才能正确的检测和规范TS代码。
+    extends: [
+        'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+        'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+        'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+        // Enables eslint-plugin-prettier and eslint-config-prettier.
+        // This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+        'plugin:prettier/recommended',
     ],
-    'import/no-extraneous-dependencies': [ERROR, { devDependencies: true }],
-    'import/prefer-default-export': OFF,
-    'import/no-unresolved': ERROR,
-    'import/no-dynamic-require': OFF,
-
-    'unicorn/better-regex': ERROR,
-    'unicorn/prevent-abbreviations': OFF,
-    'unicorn/filename-case': [
-      ERROR,
-      {
-        cases: {
-          // 中划线
-          kebabCase: true,
-          // 小驼峰
-          camelCase: true,
-          // 下划线
-          snakeCase: false,
-          // 大驼峰
-          pascalCase: true,
+    parserOptions: {
+        ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+        sourceType: 'module', // Allows for the use of imports
+        ecmaFeatures: {
+            jsx: true, // Allows for the parsing of JSX
         },
-      },
-    ],
-    'unicorn/no-array-instanceof': WARN,
-    'unicorn/no-for-loop': WARN,
-    'unicorn/prefer-add-event-listener': [
-      ERROR,
-      {
-        excludedPackages: ['koa', 'sax'],
-      },
-    ],
-    'unicorn/prefer-query-selector': ERROR,
-    'unicorn/no-null': OFF,
-    'unicorn/no-array-reduce': OFF,
-
-    '@typescript-eslint/no-useless-constructor': ERROR,
-    '@typescript-eslint/no-empty-function': WARN,
-    '@typescript-eslint/no-var-requires': OFF,
-    '@typescript-eslint/explicit-function-return-type': OFF,
-    '@typescript-eslint/explicit-module-boundary-types': OFF,
-    '@typescript-eslint/no-explicit-any': OFF,
-    '@typescript-eslint/no-use-before-define': ERROR,
-    '@typescript-eslint/no-unused-vars': WARN,
-    'no-unused-vars': OFF,
-
-    'react/jsx-filename-extension': [ERROR, { extensions: ['.tsx', 'ts', '.jsx', 'js'] }],
-    'react/jsx-indent-props': [ERROR, 2],
-    'react/jsx-indent': [ERROR, 2],
-    'react/jsx-one-expression-per-line': OFF,
-    'react/destructuring-assignment': OFF,
-    'react/state-in-constructor': OFF,
-    'react/jsx-props-no-spreading': OFF,
-    'react/prop-types': OFF,
-
-    'jsx-a11y/click-events-have-key-events': OFF,
-    'jsx-a11y/no-noninteractive-element-interactions': OFF,
-    'jsx-a11y/no-static-element-interactions': OFF,
-
-    'lines-between-class-members': [ERROR, 'always'],
-    // indent: [ERROR, 2, { SwitchCase: 1 }],
-    'linebreak-style': [ERROR, 'unix'],
-    quotes: [ERROR, 'single'],
-    semi: [ERROR, 'always'],
-    'no-unused-expressions': WARN,
-    'no-plusplus': OFF,
-    'no-console': OFF,
-    'class-methods-use-this': ERROR,
-    'jsx-quotes': [ERROR, 'prefer-single'],
-    'global-require': OFF,
-    'no-use-before-define': OFF,
-    'no-restricted-syntax': OFF,
-    'no-continue': OFF,
-  },
+    },
+    settings: {
+        react: {
+            version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+        },
+    },
+    env: {
+        // 指定代码的运行环境
+        browser: true, // env环境变量配置，形如console属性只有在browser环境下才会存在，如果没有设置支持browser，那么可能报console is undefined的错误。
+        node: true,
+    },
+    rules: {
+        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+        quotes: ['error', 'single'],
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-this-alias': 'off',
+        'react/prop-types': 'off',
+        'react/display-name': 'off',
+        // 'react/jsx-uses-react': 'off',
+        // 'react/react-in-jsx-scope': 'off'
+    },
 };

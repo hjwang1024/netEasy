@@ -5,7 +5,7 @@ root = true
 indent_style = space 
 
 # 缩进大小，可设定为 1-8 的数字
-indent_size = 2
+indent_size = 4
 
 # 换行符，可选配置有 lf ，cr ，crlf ，许多有名的开源库都是使用 lf 
 end_of_line = lf

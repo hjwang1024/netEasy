@@ -1,0 +1,23 @@
+.sidebarContainer{
+    width: 200px;
+    height: 100% ;
+    overflow: hidden;
+    .logo{
+        height: 50px;
+        background-color: rgb(246,246,246);
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        .logoImg{
+            margin-left: 10px;
+        }
+        .routerArrows{
+            display: flex;
+            align-items: center;
+            width: 45px;
+            justify-content: space-between;
+            margin-right: 11px;
+        }
+    }
+}
+
