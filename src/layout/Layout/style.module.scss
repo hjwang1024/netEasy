@@ -3,4 +3,15 @@
     height: calc(100% - 60px);
     display: flex;
     overflow: hidden;
+    .pageContainer{
+        width: calc(100% - 200px);
+        height: 100%;
+    }
+    .layout{}
+    .routeContainer{
+        width: 94%;
+        max-width: 1140px;
+        margin: 0 auto;
+        height: calc(100% - 50px);
+    }
 }

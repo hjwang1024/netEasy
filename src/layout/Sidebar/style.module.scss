@@ -20,4 +20,97 @@
         }
     }
 }
+.menuContainer{
+    background-color:rgb(237,237,237) ;
+    height: calc(100% - 50px);
+    .menus{
+      overflow-y: auto;
+      height: calc(100% - 60px);
+    }
+}
+.userLogin{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    .avatarImg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgb(224,224,224);
+        cursor: pointer;
+        color: rgb(253, 253, 253);
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        .outline{
+            width: 100%;
+        }
+    }
+    .userName{
+        margin: 0 4px;
+    }
+}
+
+.menuBlock{
+    margin-bottom: 14px;
+
+  .menuLabel {
+    padding-left: 20px;
+    font-size: 0.8em;
+    color: grey;
+    margin: 8px 0;
+  }
+  .MenuTabs {
+    color: rgb(77, 77, 77);
+    cursor: default;
+  
+    .menuTab {
+      padding: 8px 20px;
+  
+      span {
+        margin-right: 10px;
+      }
+    }
+  
+    .menuTab:hover {
+      background-color: #e3e3e3;
+    }
+  
+    .menuActive {
+      color: #c7332f;
+    }
+  }
+}
+
+.songListContainer {
+  .songListTitle{
+    padding: 0 20px;
+    margin: 8px 0;
+    font-size: 0.8em;
+    color: grey;
+  }
+  .songListItem {
+    padding: 8px 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+    font-size: 0.9em;
+
+    &:hover {
+      background-color: #e3e3e3;
+    }
+  }
+  .menuActive{
+    color: #c7332f;
+  }
+}
+
 

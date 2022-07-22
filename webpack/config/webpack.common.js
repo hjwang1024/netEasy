@@ -40,6 +40,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'css-loader',
@@ -49,7 +50,21 @@ module.exports = {
                                 localIdentName: '[local]__[hash:base64:5]',
                             },
                             sourceMap: true,
-                            importLoaders: 2,
+                            importLoaders: 1,
+                        },
+                    },
+                ],
+            },
+            {
+                //  专门处理antd的css样式
+                test: /\.css$/,
+                include: /node_modules/,
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
                         },
                     },
                 ],

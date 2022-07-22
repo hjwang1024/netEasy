@@ -1,12 +1,18 @@
-import axios, { AxiosRequestConfig, ResponseType, AxiosInstance } from 'axios';
+import axios, {
+    AxiosError,
+    AxiosResponse,
+    AxiosRequestConfig,
+    ResponseType,
+    AxiosInstance,
+} from 'axios';
 import { message as Toast } from 'antd';
 
-const LOCAL_ORIGIN = 'http://localhost';
+const LOCAL_ORIGIN = 'http://106.15.196.84';
 
-export const PORT = 8080;
+export const PORT = 4000;
 const TIMEOUT = 40000;
 
-export const SERVER = `${LOCAL_ORIGIN}:${PORT}/api`;
+export const SERVER = `${LOCAL_ORIGIN}:${PORT}`;
 
 interface IDictionary<T> {
     [key: string]: T;
@@ -28,16 +34,26 @@ const createInstance = () => {
     return instance;
 };
 
-const handleResponse = (response: any) => {
-    return response.data;
+const handleResponse = (res: AxiosResponse) => {
+    if (res.status === 200) {
+        const code = res.data.code;
+        if (code === 200) {
+            return Promise.resolve(res.data);
+        }
+    }
+    return Promise.reject(res.data);
 };
 
-const handleError = (error: any) => {
+const handleError = (error: AxiosError) => {
+    console.log(error);
+
     const { response, message } = error;
-    return Promise.reject(response ? new Error(response.data.message || message) : error);
+    return Promise.reject(
+        response ? new Error((response.data && response.data.message) || message) : error,
+    );
 };
 
-const toastError = (error: any) => {
+const toastError = (error: AxiosError) => {
     const { response, message } = error;
     console.error(error);
     Toast.error(response?.data?.message || message);

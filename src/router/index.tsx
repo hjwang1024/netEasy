@@ -1,37 +1,42 @@
 import React, { lazy } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RouteConfig } from 'react-router-config';
+import ROUTES from './routes';
 
-const LoginPage = lazy(() => import(/* webpackChunkName: "LoginPage" */ '../pages/Login'));
-
-const HomePage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../components/Home'));
-const FindPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../pages/Find'));
-
-const MyPage = lazy(() => import(/* webpackChunkName: "LoginPage" */ '../pages/My'));
-const LayoutPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '../layout/Layout'));
+const LayoutPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '@/layout/Layout'));
+const DiscoverPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '@/pages/Discover'));
+const RecommendationPage = lazy(
+    () => import(/* webpackChunkName: "FindPage" */ '@/pages/Discover/Recommendation'),
+);
 
 const routes: RouteConfig[] = [
     {
-        path: '/',
+        path: ROUTES.ROOT,
         exact: true,
-        render: () => <Redirect to='/discover' />,
+        render: () => <Redirect to={ROUTES.DISCOVERY} />,
     },
     {
-        path: '/discover',
+        path: ROUTES.DISCOVERY,
         component: LayoutPage,
         routes: [
             {
-                path: '/discover',
+                path: ROUTES.DISCOVERY,
                 key: 'discover',
                 exact: true,
-                component: FindPage,
+                component: DiscoverPage,
             },
             {
-                path: '/discover/recommendation',
-                key: 'discover',
+                path: ROUTES.RECOMMENDATION,
+                key: 'recommendation',
                 exact: true,
-                component: LoginPage,
+                component: RecommendationPage,
             },
+            // {
+            //     path: '/discover/recommendation',
+            //     key: 'discover',
+            //     exact: true,
+            //     component: DiscoverPage,
+            // },
         ],
     },
 ];

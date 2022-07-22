@@ -1,18 +1,13 @@
-const proxySettings = {
-  // 接口代理1
-  '/api/': {
-    target: 'http://198.168.111.111:3001',
-    changeOrigin: true,
-  },
-  // 接口代理2
-  '/api-2/': {
-    target: 'http://198.168.111.111:3002',
-    changeOrigin: true,
-    pathRewrite: {
-      '^/api-2': '',
-    },
-  },
-  // .....
+import { createProxyMiddleware } from 'http-proxy-middleware';
+module.exports = function (app) {
+    app.use(
+        '/api',
+        createProxyMiddleware({
+            target: 'http://106.15.196.84:4000',
+            changeOrigin: true,
+            pathRewrite(path) {
+                return path.replace('/api', '');
+            },
+        }),
+    );
 };
-
-module.exports = proxySettings;

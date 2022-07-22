@@ -7,20 +7,19 @@
     "jsx": "react",
     "isolatedModules": true,
     "strict": true,
-
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "Src/*": ["src/*"],
-      "Components/*": ["src/components/*"],
-      "Utils/*": ["src/utils/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/components/*"],
+      "~/*": ["src/utils/*"]
     },
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-
+    "suppressImplicitAnyIndexErrors":true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,

@@ -6,23 +6,30 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node webpack/server",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack/config/webpack.prod.js",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write",
     "lint": "npm run lint-eslint && npm run lint-stylelint",
     "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
-    "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}"
+    "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}",
+    "fix":"eslint --fix -c .eslintrc.js src/**/*.{ts,tsx}"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/runtime-corejs3": "^7.13.10",
+    "@blueprintjs/core": "^4.6.0",
     "antd": "^4.21.6",
     "axios": "^0.21.1",
+    "babel-plugin-import": "^1.13.5",
+    "classnames": "^2.3.1",
+    "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.1",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.1",
+    "swiper": "^8.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",
@@ -32,7 +39,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
-    "@types/react": "^17.0.3",
+    "@types/react": "~17.0.47",
     "@types/react-dom": "^17.0.3",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-config": "^5.0.6",
@@ -65,7 +72,7 @@
     "eslint-plugin-unicorn": "^29.0.0",
     "fork-ts-checker-webpack-plugin": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "husky": "^4.3.8",
+    "http-proxy-middleware": "^2.0.6",
     "ip": "^1.1.5",
     "is-root": "^2.1.0",
     "lint-staged": "^10.5.4",
@@ -102,12 +109,6 @@
     "ie >= 9",
     "not op_mini all"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,js}": [
       "eslint --config .eslintrc.js"

@@ -1,0 +1,21 @@
+.navbar{
+   display: flex;
+    .root {
+        display: flex;
+        align-items: center;
+      }
+      
+      .navbarItem {
+        margin-right: 2em;
+        cursor: pointer;
+        color: grey;
+      
+        &:hover {
+          color: black;
+        }
+      }
+      
+      .isActive {
+        color: black;
+      }
+}

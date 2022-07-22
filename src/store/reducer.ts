@@ -1,21 +1,29 @@
-const defaultState = {
-  value1: 10,
-};
-interface IAction {
-  type: string;
-  value: any;
+import { ILoginRequest, ILoginResult } from '@/apis/modules/types/user';
+import { pick } from '~/util';
+export interface IGlobalState {
+    userInfo: ILoginResult | null;
 }
-export default function changeData(state = defaultState, action: IAction): any {
-  // console.log(state, action);
+interface IGlobalAction {
+    type: string;
+    payload: any;
+}
 
-  switch (action.type) {
-    case 'add':
-      return {
-        value1: state.value1 + 1,
-        action,
-      };
+const defaultState: IGlobalState = {
+    userInfo: null,
+};
 
-    default:
-      return state;
-  }
+export default function changeData(state = defaultState, action: IGlobalAction) {
+    switch (action.type) {
+        case 'GET_USER_INFO_SUCCESS':
+            // console.log(state, action);
+            return {
+                userInfo: {
+                    ...pick(action.payload, ['token', 'userId', 'profile']),
+                    userId: action.payload.account.id,
+                },
+            };
+
+        default:
+            return state;
+    }
 }
