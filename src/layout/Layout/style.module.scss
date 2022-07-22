@@ -9,8 +9,8 @@
     }
     .layout{}
     .routeContainer{
-        width: 94%;
-        max-width: 1140px;
+        width: calc(96% - 50px);
+        // max-width: 1140px;
         margin: 0 auto;
         height: calc(100% - 50px);
     }
