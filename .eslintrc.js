@@ -40,6 +40,7 @@ module.exports = {
         'react/prop-types': 'off',
         'react/display-name': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
         // 'react/jsx-uses-react': 'off',
         // 'react/react-in-jsx-scope': 'off'
     },

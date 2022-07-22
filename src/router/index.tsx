@@ -13,7 +13,9 @@ const routes: RouteConfig[] = [
     {
         path: ROUTES.ROOT,
         exact: true,
-        render: () => <Redirect to={ROUTES.DISCOVERY} />,
+        render: () => {
+            return <Redirect to={ROUTES.DISCOVERY} />;
+        },
     },
     {
         path: ROUTES.DISCOVERY,
