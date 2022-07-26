@@ -1,0 +1,35 @@
+
+
+.root {
+  font-size: 0.9em;
+}
+
+.header {
+  display: flex;
+  padding: 10px 0;
+  color: #7c7c7c;
+}
+
+.content {
+  .row {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  .row:nth-child(2n + 1) {
+    background-color: #fafafa;
+  }
+
+  .row:hover {
+    background-color: #f2f2f3;
+  }
+
+  .disabled {
+    color: #bababa;
+  }
+}
+
+.empty {
+  margin-top: 100px;
+  text-align: center;
+}

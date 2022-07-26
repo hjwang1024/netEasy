@@ -4,6 +4,8 @@ import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { IBanner } from '@/apis/modules/types/personalized';
 
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import styles from './style.module.scss';
 
 import axios from '@/apis';
@@ -12,8 +14,6 @@ const Recommendation = () => {
     const [banners, setBanners] = useState<IBanner[]>([]);
     const getBannerList = async () => {
         const res = await axios.getBanner();
-        console.log(res);
-
         setBanners(res.banners || []);
     };
     useEffect(() => {
@@ -24,13 +24,14 @@ const Recommendation = () => {
             <Swiper
                 spaceBetween={-160}
                 slidesPerView={3}
+                speed={1}
                 centeredSlides={true}
                 loop={true}
-                navigation={true}
-                pagination={true}
+                observer={true}
+                autoplay={{ delay: 0, disableOnInteraction: false }}
+                observeParents={true}
                 initialSlide={3}
                 className={styles.mySwiper}
-                onSwiper={(swiper) => console.log(banners)}
             >
                 {banners.map(({ imageUrl, typeTitle, targetId, targetType }, index) => {
                     return (

@@ -1,0 +1,47 @@
+
+.root {
+  display: flex;
+  font-size: 0.9em;
+}
+
+.pages {
+  display: flex;
+}
+
+.item {
+  width: 30px;
+  margin-right: 3px;
+  padding: 5px 0;
+  color: #5d5d5d;
+  text-align: center;
+  border: 1px solid #bababa;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f3;
+  }
+}
+
+.dotItem {
+  cursor: default;
+}
+
+.active {
+  color: #fff;
+  background-color: red;
+  border: 1px solid red;
+
+  &:hover {
+    background-color: red;
+  }
+}
+
+.disabled {
+  color: #bababa;
+  cursor: default;
+
+  &:hover {
+    background-color: #fff;
+  }
+}

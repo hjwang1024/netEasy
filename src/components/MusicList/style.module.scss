@@ -1,0 +1,48 @@
+
+
+.alias {
+  margin-top: 10px;
+  color: #bababa;
+}
+
+.operations {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  color: #bababa;
+
+  .index {
+    width: 40px;
+    margin-right: 6px;
+    text-align: right;
+  }
+
+  .isPlaying {
+    width: 44px;
+    margin-right: 0;
+    color: red;
+    text-align: right;
+  }
+
+  span:nth-child(2) {
+    cursor: pointer;
+
+    &:hover {
+      color: #7c7c7c;
+    }
+  }
+}
+
+.name {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 5px;
+  }
+}
+
+.active {
+  color: red;
+}

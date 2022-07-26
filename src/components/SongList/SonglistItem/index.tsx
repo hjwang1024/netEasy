@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PlayCount from '@@/PlayCount';
 import PlayIcon from '@@/PlayIcon';
 import ROUTES from '@/router/routes';
-import styles from '../style.module.scss';
+import styles from './style.module.scss';
 interface ISongListItem {
     id: number;
     name: string;

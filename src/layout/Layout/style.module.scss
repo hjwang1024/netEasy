@@ -7,11 +7,14 @@
         width: calc(100% - 200px);
         height: 100%;
     }
-    .layout{}
+    .layout{
+        overflow-y: auto;
+        height: calc(100% - 50px);
+    }
     .routeContainer{
         width: calc(96% - 50px);
         // max-width: 1140px;
         margin: 0 auto;
-        height: calc(100% - 50px);
+        
     }
 }

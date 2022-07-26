@@ -50,8 +50,6 @@ const Navbar: React.FC = () => {
     const { pathname } = useLocation();
     const history = useHistory();
 
-    console.log(pathname);
-
     const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key));
     if (!matchPathPrefix) {
         return null;

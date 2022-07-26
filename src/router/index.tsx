@@ -9,36 +9,55 @@ const RecommendationPage = lazy(
     () => import(/* webpackChunkName: "FindPage" */ '@/pages/Discover/Recommendation'),
 );
 
+const SonglistPage = lazy(() => import(/* webpackChunkName: "FindPage" */ '@/pages/Songlist'));
+const SonglistDetailPage = lazy(
+    () => import(/* webpackChunkName: "FindPage" */ '@/pages/SonglistDetail'),
+);
+
 const routes: RouteConfig[] = [
     {
         path: ROUTES.ROOT,
-        exact: true,
-        render: () => {
-            return <Redirect to={ROUTES.DISCOVERY} />;
-        },
-    },
-    {
-        path: ROUTES.DISCOVERY,
         component: LayoutPage,
         routes: [
             {
-                path: ROUTES.DISCOVERY,
-                key: 'discover',
+                path: ROUTES.ROOT,
                 exact: true,
-                component: DiscoverPage,
+                key: '/',
+                render: () => {
+                    return <Redirect to={ROUTES.DISCOVERY} />;
+                },
             },
             {
-                path: ROUTES.RECOMMENDATION,
-                key: 'recommendation',
-                exact: true,
-                component: RecommendationPage,
+                path: ROUTES.DISCOVERY,
+                key: '1',
+                component: DiscoverPage,
+                routes: [
+                    {
+                        path: ROUTES.RECOMMENDATION,
+                        key: '1',
+                        exact: true,
+                        component: RecommendationPage,
+                    },
+                    {
+                        path: ROUTES.SONG_LIST,
+                        key: 'songlist',
+                        exact: true,
+                        component: SonglistPage,
+                    },
+                    {
+                        path: ROUTES.DISCOVERY,
+                        key: '1',
+                        exact: true,
+                        component: RecommendationPage,
+                    },
+                ],
             },
-            // {
-            //     path: '/discover/recommendation',
-            //     key: 'discover',
-            //     exact: true,
-            //     component: DiscoverPage,
-            // },
+            {
+                path: ROUTES.SONG_LIST_DETAIL,
+                key: 'songlist_detail',
+                exact: true,
+                component: SonglistDetailPage,
+            },
         ],
     },
 ];
