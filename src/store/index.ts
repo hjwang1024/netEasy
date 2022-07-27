@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import globalReducer, { IGlobalState } from './reducer';
+import playerReducer from '@/components/Player/store/reducer';
 import * as globalAction from './actions';
 import storageSession from 'redux-persist/lib/storage/session';
 
@@ -19,6 +20,7 @@ const persistConfig = {
 };
 const reducers = combineReducers({
     global: globalReducer,
+    player: playerReducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
 const store = createStore(persistedReducer, applyMiddleware(thunk));

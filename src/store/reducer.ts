@@ -12,10 +12,9 @@ const defaultState: IGlobalState = {
     userInfo: null,
 };
 
-export default function changeData(state = defaultState, action: IGlobalAction) {
+export default (state = defaultState, action: IGlobalAction) => {
     switch (action.type) {
         case 'GET_USER_INFO_SUCCESS':
-            // console.log(state, action);
             return {
                 userInfo: {
                     ...pick(action.payload, ['token', 'userId', 'profile']),
@@ -26,4 +25,4 @@ export default function changeData(state = defaultState, action: IGlobalAction) 
         default:
             return state;
     }
-}
+};

@@ -1,0 +1,20 @@
+
+.root {
+  display: flex;
+  align-items: center;
+  color: #bababa;
+}
+
+.singer {
+  margin-top: 5px;
+  font-size: 0.9em;
+  cursor: pointer;
+
+  &:hover {
+    color: #7c7c7c;
+  }
+}
+
+.slash {
+  margin: 0 5px;
+}

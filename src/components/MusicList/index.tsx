@@ -7,13 +7,7 @@ import VipIcon from '@@/VipIcon';
 import { IMusic, IArtist, IAlbum, MUSIC_STATUS, MUSIC_TYPE } from '@/apis/modules/types/business';
 import axios from '@/apis';
 import { formatTime } from '@/utils/format';
-// import { createMusic } from 'helpers/business';
-// import {
-//     PlayMusicStateContext,
-//     PlayMusicDispatchContext,
-//     AudioContext,
-//     ACTIONS,
-// } from 'reducers/playMusic';
+
 import styles from './style.module.scss';
 
 interface IProps {
@@ -24,6 +18,8 @@ interface IProps {
 const { useContext } = React;
 
 const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
+    console.log(data);
+
     // const state = useContext(PlayMusicStateContext);
     // const dispatch = useContext(PlayMusicDispatchContext);
     // const audioInfo = useContext(AudioContext);
