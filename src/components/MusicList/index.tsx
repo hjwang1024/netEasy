@@ -105,7 +105,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
             title: '时长',
             key: 'dt',
             width: '10%',
-            render: (duration: number) => formatTime(duration / 1000),
+            render: (duration: number) => formatTime(duration),
         },
     ];
 
