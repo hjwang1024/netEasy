@@ -42,8 +42,6 @@ function HighQualityPage() {
 
     const getAllSonglist = async (cat?: string, offset?: number) => {
         // 获取所有歌单
-        console.log(selectedCat);
-
         const allSongList = await axios.getSonglists({ cat, offset });
         setAllSongList(allSongList.playlists || []);
         setTotal(allSongList.total);

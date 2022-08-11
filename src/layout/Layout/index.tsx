@@ -7,8 +7,6 @@ import Header from '@@/Header';
 import styles from './style.module.scss';
 const LayoutPage = (props: any) => {
     const route = props.route;
-    console.log(route);
-
     return (
         <Fragment>
             <div className={styles.homeContainer}>

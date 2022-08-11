@@ -1,5 +1,7 @@
 import { ILoginRequest, ILoginResult } from '@/apis/modules/types/user';
 import { pick } from '~/util';
+import produce from 'immer';
+
 export interface IGlobalState {
     userInfo: ILoginResult | null;
 }
@@ -12,7 +14,7 @@ const defaultState: IGlobalState = {
     userInfo: null,
 };
 
-export default (state = defaultState, action: IGlobalAction) => {
+export default produce((state: IGlobalState, action: IGlobalAction) => {
     switch (action.type) {
         case 'GET_USER_INFO_SUCCESS':
             return {
@@ -21,8 +23,7 @@ export default (state = defaultState, action: IGlobalAction) => {
                     userId: action.payload.account.id,
                 },
             };
-
         default:
-            return state;
+            break;
     }
-};
+}, defaultState);

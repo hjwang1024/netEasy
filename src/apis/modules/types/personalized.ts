@@ -31,6 +31,13 @@ export interface IMusic {
     picUrl: string;
     song: IMusicSong;
 }
+export interface ISong {
+    id: number;
+    name: string;
+    album: IAlbum;
+    singers: ISinger[];
+    dt: number;
+}
 
 export interface IMV {
     alg: string;
@@ -55,4 +62,16 @@ export interface IBanner {
     titleColor: string;
     typeTitle: string;
     url: string;
+}
+export interface IAlbum {
+    id: number;
+    name: string;
+    picUrl: string;
+}
+
+export interface ISinger {
+    id: number;
+    name: string;
+    picUrl: string;
+    hotSongs?: ISong[];
 }

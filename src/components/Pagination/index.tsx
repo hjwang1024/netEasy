@@ -21,8 +21,6 @@ const PAGE_SCALE = 3;
 const Pagination: React.FC<IProps> = ({ total = 0, page = 1, pageSize = 100, onPageChange }) => {
     const [currentPage, setCurrentPage] = useState(page);
     const pageCount = Math.ceil(total / pageSize);
-    console.log(page);
-
     const isFirstPage = currentPage === 1;
     const isLastPage = currentPage === pageCount;
     useEffect(() => {

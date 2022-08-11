@@ -4,15 +4,14 @@ import React from 'react';
 import { formatTime } from '~/format';
 
 const { useContext, useMemo } = React;
-
-const AudioTimer = () => {
-    // const audioInfo = useContext(AudioContext);
-    // const { state } = audioInfo;
-    const state: any = {};
-
+interface IProps {
+    currentTime: number;
+    duration: number;
+}
+const AudioTimer: React.FC<IProps> = ({ currentTime, duration }) => {
     const time = useMemo(() => {
-        return `${formatTime(state?.time)} / ${formatTime(state?.duration)}`;
-    }, [state?.time, state?.duration]);
+        return `${formatTime(currentTime)} / ${formatTime(duration)}`;
+    }, [currentTime, duration]);
 
     return <div>{time}</div>;
 };

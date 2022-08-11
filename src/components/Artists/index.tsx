@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { IArtist } from '@/apis/modules/types/business';
+import { ISinger } from '@/apis/modules/types/personalized';
 import styles from './style.module.scss';
 
 interface IProps {
-    artists?: IArtist[];
+    artists?: ISinger[];
 }
 
 const Artists: React.FC<IProps> = ({ artists }) => {

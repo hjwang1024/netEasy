@@ -1,9 +1,14 @@
 import { DEFAULT_VALUE, localStorageFactory } from './localStorage';
 import { IMyMusic } from '@/apis/modules/types/business';
 
-export const getMusicUrl = (id?: number): string => {
-    return id ? `https://music.163.com/song/media/outer/url?id=${id}.mp3` : '';
+/**
+ * 组装歌曲的url
+ * @param id
+ */
+export const formatSongUrl = (id: number): string => {
+    return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 };
+
 enum KEY {
     PLAY_HISTORY = '__playHistory',
     PLAY_LIST = '__playList',
@@ -44,3 +49,20 @@ export const playMode = localStorageFactory<MODE>({
     defaultValue: MODE.PLAY_IN_ORDER,
     raw: true,
 });
+export const createMusic = ({
+    id,
+    name,
+    artists,
+    duration,
+    picUrl,
+    ...others
+}: IMyMusic): IMyMusic => {
+    return {
+        id,
+        name,
+        artists,
+        duration,
+        picUrl,
+        ...others,
+    };
+};

@@ -10,11 +10,12 @@ import { useParams } from 'react-router-dom';
 import { ISonglist } from '@/apis/modules/types/business';
 import Tabs from '@@/Tabs';
 import MusicList from '@@/MusicList';
-import { IMusic } from '@/apis/modules/types/business';
+import { ISong } from '@/apis/modules/types/personalized';
+import { actions } from '@@/Player/store';
 
 interface ISongListDetail {
     detail: ISonglist;
-    songs: Array<IMusic>;
+    songs: Array<ISong>;
 }
 const TABS = [
     {
@@ -27,9 +28,19 @@ const TABS = [
     },
 ];
 function SonglistDetail(props: any) {
+    const {
+        changeFullScreenAction,
+        changePlayingStatusAction,
+        changeShowPlayListAction,
+        changeCurrentIndexAction,
+        changeCurrentSongAction,
+        deleteSongAction,
+        changePlayListAction,
+    } = actions;
     const params = useParams<IDictionary<string>>();
     const { songlistId } = params;
     const [songListDetail, setSongListDetail] = useState<ISongListDetail>();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getSongListDetail();
@@ -39,11 +50,27 @@ function SonglistDetail(props: any) {
         const songListDetail2 = await axios.getSonglistAllMusic(songlistId);
         setSongListDetail({
             detail: songListDetail1.playlist,
-            songs: songListDetail2.songs,
+            songs: songListDetail2.songs.map((item: any) => {
+                return {
+                    id: item.id,
+                    name: item.name,
+                    album: item.al,
+                    singers: item.ar,
+                    dt: item.dt / 1000,
+                };
+            }),
         });
     };
-    const playAll = () => {
-        console.log('playAll');
+    const playAll = (autoPlay?: boolean) => {
+        const list = songListDetail?.songs;
+        console.log(list);
+
+        dispatch(changePlayListAction(list!));
+
+        if (autoPlay) {
+            dispatch(changeCurrentIndexAction(0));
+        }
+        dispatch(changePlayingStatusAction(true));
     };
     return (
         <>

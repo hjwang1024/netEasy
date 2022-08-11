@@ -67,10 +67,14 @@ export interface IMV {
 
 export interface IMusic {
     album: IAlbum;
+    al: IAlbum;
     alias?: string[];
     artists: IArtist[];
+    singers: IArtist[];
+    ar: IArtist[];
     copyrightId?: number;
     duration: number;
+    dt: number;
     fee?: number;
     ftype?: number;
     id: number;

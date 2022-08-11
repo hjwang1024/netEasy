@@ -18,8 +18,6 @@ const LoginTab = () => {
     });
     useEffect(() => {
         if (userInfo) {
-            console.log(userInfo);
-
             //未登录
             // dispatch(globalAction.loginFun());
         }

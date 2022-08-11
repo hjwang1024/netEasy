@@ -1,39 +1,48 @@
-import {
-    PLAY,
-    SET_PLAY_LIST,
-    CLEAR_PLAY_LIST,
-    SET_PLAY_MODE,
-    SHOW_LYRIC,
-    HIDE_LYRIC,
-    CLEAR_PLAY_HISTORY,
-} from './constants';
+import { ISong } from '@/apis/modules/types/personalized';
+import { IMusic } from '@/apis/modules/types/business';
 
-export const changeCurrentPlay = (payload: IDictionary<any>) => ({
-    type: PLAY,
+import {
+    SET_FULL_SCREEN,
+    SET_PLAYING_STATUS,
+    SET_CURRENT_INDEX,
+    SET_CURRENT_SONG,
+    SET_PLAY_LIST,
+    SET_SHOW_PLAY_LIST,
+    DELETE_SONG,
+} from './constants';
+import { IPlayerAction } from './reducer';
+
+export const changeFullScreenAction = (payload: boolean): IPlayerAction => ({
+    type: SET_FULL_SCREEN,
     payload,
 });
 
-export const setPlayList = (payload: IDictionary<any>) => ({
+export const changePlayingStatusAction = (payload: boolean): IPlayerAction => ({
+    type: SET_PLAYING_STATUS,
+    payload,
+});
+
+export const changeCurrentIndexAction = (payload: number): IPlayerAction => ({
+    type: SET_CURRENT_INDEX,
+    payload,
+});
+
+export const changeCurrentSongAction = (payload: any): IPlayerAction => ({
+    type: SET_CURRENT_SONG,
+    payload,
+});
+
+export const changePlayListAction = (payload: ISong[]): IPlayerAction => ({
     type: SET_PLAY_LIST,
     payload,
 });
-export const clearPlayList = (payload: IDictionary<any>) => ({
-    type: CLEAR_PLAY_LIST,
+
+export const changeShowPlayListAction = (payload: boolean): IPlayerAction => ({
+    type: SET_SHOW_PLAY_LIST,
     payload,
 });
-export const setPlayMode = (payload: IDictionary<any>) => ({
-    type: SET_PLAY_MODE,
-    payload,
-});
-export const showLyric = (payload: IDictionary<any>) => ({
-    type: SHOW_LYRIC,
-    payload,
-});
-export const hideLyric = (payload: IDictionary<any>) => ({
-    type: HIDE_LYRIC,
-    payload,
-});
-export const clearPlayHistory = (payload: IDictionary<any>) => ({
-    type: CLEAR_PLAY_HISTORY,
+
+export const deleteSongAction = (payload: number): IPlayerAction => ({
+    type: DELETE_SONG,
     payload,
 });

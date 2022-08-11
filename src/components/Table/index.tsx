@@ -14,7 +14,7 @@ interface IProps<RecordType> {
     showHeader?: boolean;
     columns: IColumn<RecordType, keyof RecordType>[];
     data?: RecordType[];
-    onDoubleClick?: (item: RecordType) => void;
+    onDoubleClick?: (item: RecordType, index: number) => void;
     isRecordRowDisabled?: (record: RecordType) => boolean;
 }
 
@@ -48,7 +48,9 @@ function Table<RecordType extends Record<string, any> = any>({
                                 key={index}
                                 className={cn(styles.row, disabled && styles.disabled)}
                                 onDoubleClick={
-                                    disabled ? () => {} : () => onDoubleClick && onDoubleClick(item)
+                                    disabled
+                                        ? () => {}
+                                        : () => onDoubleClick && onDoubleClick(item, index)
                                 }
                             >
                                 {columns.map(({ key, width, render }, idx) => {
